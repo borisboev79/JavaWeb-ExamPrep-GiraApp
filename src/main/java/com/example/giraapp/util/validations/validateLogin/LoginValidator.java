@@ -30,7 +30,7 @@ public class LoginValidator implements ConstraintValidator<ValidateLogin, UserLo
 
     @Override
     public boolean isValid(UserLoginModel userLoginModel, ConstraintValidatorContext constraintValidatorContext) {
-        Optional<User> optionalUser = userService.findByUsername(userLoginModel.getUsername());
+        Optional<User> optionalUser = userService.findByEmail(userLoginModel.getEmail());
 
         if (optionalUser.isEmpty()){
             return false;

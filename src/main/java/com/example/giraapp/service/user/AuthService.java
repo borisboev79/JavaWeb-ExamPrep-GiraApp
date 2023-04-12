@@ -36,10 +36,11 @@ public class AuthService {
 
 
     public void loginUser(UserLoginModel userLoginModel) {
-        User user = this.userRepository.findByUsername(userLoginModel.getUsername()).orElse(new User());
+        User user = this.userRepository.findByEmail(userLoginModel.getEmail()).orElse(new User());
 
         this.loggedUser.setId(user.getId());
         this.loggedUser.setUsername(user.getUsername());
+        this.loggedUser.setEmail(user.getEmail());
     }
 
 
@@ -48,8 +49,8 @@ public class AuthService {
     }
 
 
-    public boolean isAuthentic(String username, String password) {
-        User user = this.userRepository.findByUsername(username).orElse(new User());
+    public boolean isAuthentic(String email, String password) {
+        User user = this.userRepository.findByEmail(email).orElse(new User());
         String encodedPassword = user.getPassword();
 
         return encoder.matches(password, encodedPassword);

@@ -10,6 +10,7 @@ import lombok.Setter;
 public class LoggedUser {
     private Long id;
     private String username;
+    private String email;
 
     public boolean isEmpty(){
         return this.id == null;

@@ -27,7 +27,7 @@ public class FieldExistenceValidator implements ConstraintValidator<ValidateUniq
 
     @Override
     public boolean isValid(UserRegisterModel userRegisterModel, ConstraintValidatorContext constraintValidatorContext) {
-        Optional<User> optionalUser = userService.findByUsername(userRegisterModel.getUsername());
+        Optional<User> optionalUser = userService.findByEmail(userRegisterModel.getEmail());
 
         if (optionalUser.isPresent()){
             return false;

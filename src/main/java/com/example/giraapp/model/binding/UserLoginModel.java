@@ -1,6 +1,7 @@
 package com.example.giraapp.model.binding;
 
 import com.example.giraapp.util.validations.validateLogin.ValidateLogin;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -13,9 +14,9 @@ import lombok.Setter;
 @ValidateLogin
 public class UserLoginModel {
 
-    @Size(min = 3, max = 20)
     @NotNull
-    private String username;
+    @Email
+    private String email;
 
     @Size(min = 3, max = 20)
     @NotNull

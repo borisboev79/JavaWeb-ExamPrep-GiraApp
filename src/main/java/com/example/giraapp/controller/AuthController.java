@@ -63,7 +63,7 @@ public class    AuthController {
             return "redirect:login";
         }
 
-        if(this.authService.isAuthentic(userLoginModel.getUsername(), userLoginModel.getPassword())){
+        if(this.authService.isAuthentic(userLoginModel.getEmail(), userLoginModel.getPassword())){
             this.authService.loginUser(userLoginModel);
 
             return "redirect:/home";

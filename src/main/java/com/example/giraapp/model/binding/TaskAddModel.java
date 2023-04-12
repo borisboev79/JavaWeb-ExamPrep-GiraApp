@@ -14,14 +14,14 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@ValidateUniqueTask
+
 public class TaskAddModel {
 
     private Long id;
 
-    @NotEmpty
-
-    @Size(min = 3, max = 20)
+    @NotEmpty(message = "Task name cannot be empty.")
+    @ValidateUniqueTask(message = "This task name already exists.")
+    @Size(min = 3, max = 20, message = "Task name should be between 3 and 20 characters long")
     private String name;
 
     @NotEmpty

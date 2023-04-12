@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Optional;
 
-public class UniqueTaskValidator implements ConstraintValidator<ValidateUniqueTask, TaskAddModel> {
+public class UniqueTaskValidator implements ConstraintValidator<ValidateUniqueTask, String> {
 
     private final TaskRepository taskRepository;
 
@@ -24,8 +24,8 @@ public class UniqueTaskValidator implements ConstraintValidator<ValidateUniqueTa
     }
 
     @Override
-    public boolean isValid(TaskAddModel taskAddModel, ConstraintValidatorContext constraintValidatorContext) {
-        Optional<Task> task = this.taskRepository.findByName(taskAddModel.getName());
+    public boolean isValid(String value, ConstraintValidatorContext constraintValidatorContext) {
+        Optional<Task> task = this.taskRepository.findByName(value);
         return task.isEmpty();
     }
 }

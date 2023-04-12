@@ -1,9 +1,9 @@
 package com.example.giraapp.repository;
 
-import com.example.giraapp.model.entity.Song;
+import com.example.giraapp.model.entity.Task;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface SongRepository extends JpaRepository<Song, Long> {
+public interface TaskRepository extends JpaRepository<Task, Long> {
 }

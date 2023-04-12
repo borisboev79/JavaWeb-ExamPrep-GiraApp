@@ -1,6 +1,6 @@
 package com.example.giraapp.model;
 
-import com.example.giraapp.model.enums.Style;
+import com.example.giraapp.model.enums.ClassificationName;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.*;
@@ -13,27 +13,24 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class SongAddModel {
+public class TaskAddModel {
 
     private Long id;
 
     @NotEmpty
     @Size(min = 3, max = 20)
-    private String performer;
+    private String name;
 
     @NotEmpty
-    @Size(min = 2, max = 20)
-    private String title;
+    @Size(min = 5)
+    private String description;
 
+    @FutureOrPresent
     @NotNull
-    @Positive
-    private Integer duration;
-
-    @PastOrPresent
-    private LocalDate releaseDate;
+    private LocalDate dueDate;
 
     @Enumerated(EnumType.STRING)
     @NotNull
-    private Style style;
+    private ClassificationName classificationName;
 
 }

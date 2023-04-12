@@ -29,8 +29,6 @@ public class AuthService {
                 .username(userRegisterModel.getUsername())
                 .password(encoder.encode(userRegisterModel.getPassword()))
                 .email(userRegisterModel.getEmail())
-           //     .offers(new ArrayList<>())
-           //     .boughtOffers(new ArrayList<>())
                 .build());
     }
 

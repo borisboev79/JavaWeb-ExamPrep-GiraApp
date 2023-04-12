@@ -1,57 +1,56 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>GIRA</title>
-    <link rel="icon" href="/images/projectLogo.png" type="image/icon type">
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/reset-css.css">
-    <link rel="stylesheet" href="/css/style.css">
-</head>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/commons::head"></head>
 <body>
 <div class="page-container">
     <header th:replace="fragments/commons::nav"></header>
     <main class="content-wrap">
         <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Add Task</span></h1>
         <hr class="hr-3 w-25 bg-white"/>
-        <form class="mx-auto w-25 bg-blur"  method="" action="/">
+        <form class="mx-auto w-25 bg-blur"
+              th:method="POST"
+              th:action="@{/tasks/add}"
+              th:object="${taskAddModel}">
+
             <div class="form-group">
                 <div class="label-holder textCol d-flex justify-content-center">
-                    <label for="name" class="h4 mb-2">Name</label>
+                    <label th:for="name" class="h4 mb-2">Name</label>
                 </div>
-                <input type="text"  class="form-control" id="name" name="name"/>
-                <small class="text-danger">Name error message</small>
+                <input type="text"  class="form-control" th:field="*{name}"
+                       th:errorclass="bg-danger"/>
+                <small th:if="${#fields.hasErrors('name')}" class="text-danger">Name error message</small>
             </div>
             <div class="form-group">
                 <div class="label-holder textCol d-flex justify-content-center">
-                    <label for="description" class="h4 mb-2">Description</label>
+                    <label th:for="description" class="h4 mb-2">Description</label>
                 </div>
-                <input type="text" class="form-control" id="description" name="description"/>
+                <input type="text" class="form-control" th:field="*{description}"
+                       th:errorclass="bg-danger"/>
 
-                <small class="text-danger">Description error message</small>
+                <small th:if="${#fields.hasErrors('description')}" class="text-danger">Description error message</small>
             </div>
             <div class="form-group">
                 <div class="label-holder  textCol d-flex justify-content-center">
-                    <label for="dueDate" class="h4 mb-2">Due Date</label>
+                    <label th:for="dueDate" class="h4 mb-2">Due Date</label>
                 </div>
-                <input type="date" class="form-control" id="dueDate" name="dueDate"/>
-                <small class="text-danger">Date error message</small>
+                <input type="date" class="form-control" th:field="*{dueDate}"/>
+                <small th:if="${#fields.hasErrors('dueDate')}" class="text-danger">Date error message</small>
             </div>
             <div class="form-group">
                 <div class="label-holder  textCol d-flex justify-content-center">
                     <label for="classification" class="h4 mb-2">Classification</label>
                 </div>
-                <select type="text" class="form-control" id="classification" name="classification">
+                <select type="text" class="form-control"
+                        id="classification"
+                        name="classification"
+                        th:errorclass="bg-danger">
                     <option value="">Select Classification</option>
-                    <option value="">FEATURE</option>
-                    <option value="">BUG</option>
-                    <option value="">SUPPORT</option>
-                    <option value="">OTHER</option>
-
-
+                    <option th:each="classification : ${T(com.example.giraapp.model.enums.ClassificationName).values()}"
+                            th:text="${classification}"
+                            th:value="${classification}"></option>
                 </select>
-                <small class="text-danger">Classification error message</small>
+                <small th:if="${#fields.hasErrors('classification')}" class="text-danger">Classification is required!</small>
             </div>
 
             <div class="button-holder d-flex justify-content-center">

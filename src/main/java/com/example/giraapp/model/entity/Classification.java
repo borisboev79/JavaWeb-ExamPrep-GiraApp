@@ -1,6 +1,7 @@
 package com.example.giraapp.model.entity;
 
-import com.example.giraapp.model.enums.Style;
+import com.example.giraapp.model.enums.ClassificationName;
+import com.example.giraapp.model.enums.ProgressStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -10,11 +11,11 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "styles")
-public class StyleEntity extends BaseEntity {
+@Table(name = "classifications")
+public class Classification extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
-    private Style name;
+    private ClassificationName classificationName;
 
     @Column(columnDefinition = "TEXT")
     private String description;

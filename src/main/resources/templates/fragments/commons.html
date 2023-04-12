@@ -28,7 +28,7 @@
             </ul>
             <ul th:unless="${@loggedUser.isEmpty()}" class="navbar-nav row">
                 <li class="nav-item col-md-7 pr-0">
-                    <a class="button" th:href="@{/auth/login}">Add Task</a>
+                    <a class="button" th:href="@{/tasks/add}">Add Task</a>
                 </li>
                 <li class="nav-item col-md-3 pl-0 pr-5">
                     <a class="button" th:href="@{/auth/logout}">Logout</a>

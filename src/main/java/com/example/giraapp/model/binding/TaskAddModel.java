@@ -1,6 +1,7 @@
-package com.example.giraapp.model;
+package com.example.giraapp.model.binding;
 
 import com.example.giraapp.model.enums.ClassificationName;
+import com.example.giraapp.util.validations.validateUniqueTaskName.ValidateUniqueTask;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.*;
@@ -13,11 +14,13 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ValidateUniqueTask
 public class TaskAddModel {
 
     private Long id;
 
     @NotEmpty
+
     @Size(min = 3, max = 20)
     private String name;
 
@@ -29,8 +32,8 @@ public class TaskAddModel {
     @NotNull
     private LocalDate dueDate;
 
-    @Enumerated(EnumType.STRING)
     @NotNull
+    @Enumerated(EnumType.STRING)
     private ClassificationName classificationName;
 
 }

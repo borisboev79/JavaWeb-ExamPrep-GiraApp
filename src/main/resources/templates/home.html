@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/commons::head"></head>
 <body>
 <div class="page-container">
@@ -9,14 +10,14 @@
         <hr class="hr-3 w-75 bg-white"/>
         <form class="mx-auto w-75 " method="" action="/">
 
-            <div class="card-group task-card">
+            <div class="card-group task-card" th:each="task : ${tasks}" th:object="${task}" >
                 <div class="card">
 
                     <div class="card-title">
                         <h5 class="card-title">Name</h5>
                     </div>
                     <div class="card-footer">
-                        <small>Repair Laptop</small>
+                        <small><th:block th:text="*{name}"/></small>
                     </div>
                 </div>
                 <div class="card">
@@ -25,7 +26,7 @@
                         <h5 class="card-title">Assigned to</h5>
                     </div>
                     <div class="card-footer">
-                        <small>George</small>
+                        <small><th:block th:text="*{user}"/></small>
                     </div>
                 </div>
                 <div class="card">
@@ -33,8 +34,11 @@
                     <div class="card-title">
                         <h5 class="card-title">Classification</h5>
                     </div>
-                    <div class="card-footer">
-                        <small class="classifications SUPPORT">SUPPORT</small>
+                    <div th:switch="*{classification}" class="card-footer">
+                      <small th:case="*{classification.Bug}" class="classifications BUG"><th:block th:text="*{classification}"/></small>
+                      <small th:case="*{classification.Feature}" class="classifications FEATURE"><th:block th:text="*{classification}"/></small>
+                      <small th:case="*{classification.Support}" class="classifications SUPPORT"><th:block th:text="*{classification}"/></small>
+                      <small th:case="*{classification.Other}" class="classifications OTHER"><th:block th:text="*{classification}"/></small>
                     </div>
                 </div>
                 <div class="card">
@@ -42,7 +46,7 @@
                         <h5 class="card-title">Due Date</h5>
                     </div>
                     <div class="card-footer">
-                        <small>2020-08-30</small>
+                        <small><th:block th:text="*{dueDate}"/></small>
                     </div>
                 </div>
                 <div class="card">
@@ -50,11 +54,11 @@
                         <h5 class="card-title">Progress</h5>
                     </div>
                     <div class="card-footer">
-                        <small>OPEN</small>
+                        <small><th:block th:text="*{progress}"/></small>
                     </div>
                 </div>
 
-                <a class="button prBtn">Progress</a>
+                <a class="button prBtn" th:href="@{/tasks/progress/{id}(id = *{id})}">Progress</a>
             </div>
 
         </form>

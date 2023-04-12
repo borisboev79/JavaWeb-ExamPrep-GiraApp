@@ -16,14 +16,22 @@
       <span class="col-md-1" >
         <img src="/images/projectLogo.png" alt="Logo" width="50" height="50">
       </span>
-        <a class="navbar-brand active col-md-1 title" href="/">Gira</a>
+        <a class="navbar-brand active col-md-1 title" th:href="@{/home}">Gira</a>
         <div class="collapse navbar-collapse  d-flex justify-content-end">
-            <ul class="navbar-nav row">
+            <ul th:if="${@loggedUser.isEmpty()}" class="navbar-nav row">
                 <li class="nav-item col-md-5">
-                    <a class="button" href="/">Login</a>
+                    <a class="button" th:href="@{/auth/login}">Login</a>
                 </li>
                 <li class="nav-item col-md-5">
-                    <a class="button" href="/">Register</a>
+                    <a class="button" th:href="@{/auth/register}">Register</a>
+                </li>
+            </ul>
+            <ul th:unless="${@loggedUser.isEmpty()}" class="navbar-nav row">
+                <li class="nav-item col-md-7 pr-0">
+                    <a class="button" th:href="@{/auth/login}">Add Task</a>
+                </li>
+                <li class="nav-item col-md-3 pl-0 pr-5">
+                    <a class="button" th:href="@{/auth/logout}">Logout</a>
                 </li>
             </ul>
         </div>
